@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  datasource:
+    platform: mysql
+    url: jdbc:mysql://yobidb-aws.cwestcukub1u.us-east-1.rds.amazonaws.com:3306/EmployeeDB
+    username: yobi
+    password: alfabeta
