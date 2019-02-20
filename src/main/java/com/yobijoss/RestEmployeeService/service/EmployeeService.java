@@ -6,17 +6,14 @@ import com.yobijoss.RestEmployeeService.error.EmployeeNotFoundException;
 import com.yobijoss.RestEmployeeService.model.Employee;
 import com.yobijoss.RestEmployeeService.model.Status;
 import com.yobijoss.RestEmployeeService.repository.EmployeeRepository;
+import com.yobijoss.RestEmployeeService.util.EmployeeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
 public class EmployeeService {
-
-    private static final String DATE_TIME_FORMAT = "yyyy-mm-dd";
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -29,15 +26,14 @@ public class EmployeeService {
         return employee;
     }
 
-    public Employee insert(PostEmployeeRequest postEmployeeRequest) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_TIME_FORMAT);
-
+    public Employee insert(PostEmployeeRequest postEmployeeRequest) {
         Employee employee = new Employee();
-        employee.setDateOfBirth(simpleDateFormat.parse(postEmployeeRequest.getDateOfBirth()));
-        employee.setDateOfEmployment(simpleDateFormat.parse(postEmployeeRequest.getDateOfEmployment()));
+        employee.setDateOfBirth(postEmployeeRequest.getDateOfBirth());
+        employee.setDateOfEmployment(postEmployeeRequest.getDateOfEmployment());
         employee.setFirstName(postEmployeeRequest.getFirstName());
         employee.setMiddleInitial(postEmployeeRequest.getMiddleInitial());
         employee.setLastName(postEmployeeRequest.getLastName());
+        employee.setStatus(Status.ACTIVE);
         return employeeRepository.save(employee);
     }
 
@@ -48,12 +44,12 @@ public class EmployeeService {
     }
 
     public List<Employee> getAll() {
-        return employeeRepository.findAll();
+        return employeeRepository.findByStatus(Status.ACTIVE);
     }
 
-    public Employee update(Long id, PatchEmployeeRequest postEmployeeRequest) throws EmployeeNotFoundException {
+    public Employee update(Long id, PatchEmployeeRequest patchEmployeeRequest) throws EmployeeNotFoundException {
         Employee employee = findById(id);
-
+        EmployeeUtil.updateEmployee(employee, patchEmployeeRequest);
         return employeeRepository.save(employee);
     }
 }

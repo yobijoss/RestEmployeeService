@@ -3,6 +3,7 @@ package com.yobijoss.RestEmployeeService.controller.request;
 import lombok.Data;
 
 import javax.validation.constraints.*;
+import java.util.Date;
 
 @Data
 public class PatchEmployeeRequest {
@@ -10,19 +11,12 @@ public class PatchEmployeeRequest {
     @Size(min = 1, max = 128, message = "firstName should not be empty")
     String firstName;
 
+    @Size(min = 1, max = 1, message = "middle initial should be one letter")
     String middleInitial;
 
     @Size(min = 1, max = 128, message = "lastName should not be empty")
     String lastName;
 
-    @NotEmpty
-    String dateOfBirth;
-    @NotEmpty
-    String dateOfEmployment;
-
-    @Min(0)
-    @Max(1)
-    @PositiveOrZero(message = "status needs to be declared (0 = INACTIVE, 1 = ACTIVE")
-    int status;
-
+    Date dateOfBirth;
+    Date dateOfEmployment;
 }

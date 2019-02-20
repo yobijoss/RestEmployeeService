@@ -44,13 +44,13 @@ public class EmployeeServiceController {
     }
 
     @PostMapping
-    public ResponseEntity<Resource<Employee>> createEmployee(@Valid @RequestBody PostEmployeeRequest postEmployeeRequest) throws ParseException {
+    public ResponseEntity<Resource<Employee>> createEmployee(@Valid @RequestBody PostEmployeeRequest postEmployeeRequest) {
         Employee employee = employeeService.insert(postEmployeeRequest);
         return new ResponseEntity<>(employeeResourceAssambler.toResource(employee), HttpStatus.OK);
     }
 
     @PatchMapping(path = "/{id}")
-    public ResponseEntity<Resource<Employee>> updateEmploye(@PathVariable(value = "id") Long id, @RequestBody PatchEmployeeRequest patchEmployeeRequest)
+    public ResponseEntity<Resource<Employee>> updateEmploye(@PathVariable(value = "id") Long id, @Valid @RequestBody PatchEmployeeRequest patchEmployeeRequest)
             throws ParseException, EmployeeNotFoundException {
         Employee employee = employeeService.update(id, patchEmployeeRequest);
         return new ResponseEntity<>(employeeResourceAssambler.toResource(employee), HttpStatus.OK);
@@ -64,13 +64,6 @@ public class EmployeeServiceController {
 
     @ExceptionHandler({EmployeeNotFoundException.class})
     public Map<String, Object> handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
-        Map<String, Object> errorAttributes = new HashMap<>(1);
-        errorAttributes.put("errorMsg", ex.getMessage());
-        return errorAttributes;
-    }
-
-    @ExceptionHandler({ParseException.class})
-    public Map<String, Object> handleParseExceptionException(EmployeeNotFoundException ex) {
         Map<String, Object> errorAttributes = new HashMap<>(1);
         errorAttributes.put("errorMsg", ex.getMessage());
         return errorAttributes;
