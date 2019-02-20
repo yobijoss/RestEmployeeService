@@ -1,5 +1,13 @@
 package com.yobijoss.RestEmployeeService.model;
 
 public enum Status {
-    ACTIVE, INACTIVE
+    INACTIVE,
+    ACTIVE;
+
+    public static Status parseInt(int i) {
+        if (i == INACTIVE.ordinal()) {
+            return INACTIVE;
+        }
+        return ACTIVE;
+    }
 }
