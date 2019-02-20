@@ -38,6 +38,6 @@ public class EmployeeResourceAssambler implements ResourceAssembler<Employee, Re
     }
 
     private Link getEmployeesLink() {
-        return linkTo(methodOn(EmployeeServiceController.class).getAll()).withRel("employee");
+        return linkTo(methodOn(EmployeeServiceController.class).getAll()).withRel("/employee");
     }
 }
