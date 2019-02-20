@@ -7,11 +7,11 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "Employee")
+@Table(name = "employee")
 public @Data class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

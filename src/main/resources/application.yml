@@ -1,9 +1,13 @@
 spring:
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: create
+      dialect: org.hibernate.dialect.MySQL5Dialect
   datasource:
+    driverClassName: com.mysql.jdbc.Driver
     platform: mysql
     url: jdbc:mysql://yobidb-aws.cwestcukub1u.us-east-1.rds.amazonaws.com:3306/EmployeeDB
     username: yobi
     password: alfabeta
+    initialization-mode: always
