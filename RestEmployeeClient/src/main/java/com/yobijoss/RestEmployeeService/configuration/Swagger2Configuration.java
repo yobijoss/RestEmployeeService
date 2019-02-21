@@ -4,9 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Collections;
 
 @Configuration
 @EnableSwagger2
@@ -18,6 +22,18 @@ public class Swagger2Configuration {
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.ant("/api/**"))
-                .build();
+                .build()
+                .apiInfo(apiInfo());
+    }
+
+    @Bean
+    private ApiInfo apiInfo() {
+        return new ApiInfo(
+                "Employee Api",
+                "Employee Api that provides endpoints for add, list, search, delete and update employees",
+                "0.1",
+                "Terms of service",
+                 new Contact("José Ángel García Salinas", "https://www.linkedin.com/in/joseangelgarciasalinas/", "jagspage2012@gmail.com"),
+                "MIT License", "https://github.com/yobijoss/RestEmployeeService/blob/master/LICENSE", Collections.emptyList());
     }
 }
