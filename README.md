@@ -9,7 +9,7 @@ RestEmployeeService is the project itself
 RestEmployeeClient is the module that **contains the application**
 
 
-####RestEmployeeClient.
+#### RestEmployeeClient.
 + Data is stored in a MySql:5.7 DB stored in [AWS] (https://console.aws.amazon.com/rds)
 + Gradle 4.10 is used for dependency management
 + Spring boot 2.1.3 as Framework
