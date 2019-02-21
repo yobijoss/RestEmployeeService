@@ -27,7 +27,7 @@ public class Swagger2Configuration {
     }
 
     @Bean
-    private ApiInfo apiInfo() {
+    public ApiInfo apiInfo() {
         return new ApiInfo(
                 "Employee Api",
                 "Employee Api that provides endpoints for add, list, search, delete and update employees",
