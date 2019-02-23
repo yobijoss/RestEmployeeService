@@ -1,6 +1,6 @@
 # RestEmployeeService
 
-Test Employee Service using Spring boot, Java 8, MySql, HATEOAS, Basic Auth and Gradle
+Test Employee Service using AWS RDS and EC2, Spring boot, Java 8, MySql, HATEOAS, Basic Auth and Gradle
 
 
 ## Project Structure
@@ -14,6 +14,11 @@ RestEmployeeClient is the module that **contains the application**
 + Gradle 4.10 is used for dependency management
 + Spring boot 2.1.3 as Framework
 
+## This client lives in an AWS EC2 instance:
+- [EC2 Api Documentation](http://ec2-3-82-9-122.compute-1.amazonaws.com:8080/swagger-ui.html) 
+- Please Run AWS Hosted Employee Client with post man  [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/936b23b53242c427fb16)
+
+## Do you want to run it locally? follow next steps :)
 
 ## How to Run
 - inside project folder run:
@@ -31,8 +36,7 @@ RestEmployeeClient is the module that **contains the application**
 
     java -jar <file>.jar
 
-
-## How to Use the Application
+## How to Use the Application (LocalHost)
 - After server is running, click here for [Documentation](http://localhost:8080/swagger-ui.html)
 
 #### A post man collection has been provided to use this application on localhost
