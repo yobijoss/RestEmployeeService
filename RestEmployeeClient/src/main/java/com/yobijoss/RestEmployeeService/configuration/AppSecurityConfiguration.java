@@ -17,7 +17,6 @@ import java.util.List;
 @EnableWebSecurity
 public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
     private static final String USERNAME = "yobiuser";
     private static final String PASSWORD = "yobipassword";
 

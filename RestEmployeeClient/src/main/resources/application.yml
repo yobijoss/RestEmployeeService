@@ -4,10 +4,11 @@ spring:
     hibernate:
       ddl-auto: create
       dialect: org.hibernate.dialect.MySQL5Dialect
+    database: mysql
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    platform: mysql
-    url: jdbc:mysql://yobidb-aws.cwestcukub1u.us-east-1.rds.amazonaws.com:3306/EmployeeDB
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
     username: yobi
     password: alfabeta
-    initialization-mode: always
+    platform: mysql
+    url: jdbc:mysql://employeedb.cbk6cs3emo0c.us-east-2.rds.amazonaws.com:3306/employeedb?enabledTLSProtocols=TLSv1.2
