@@ -6,6 +6,7 @@ import com.yobijoss.RestEmployeeService.error.EmployeeNotFoundException;
 import com.yobijoss.RestEmployeeService.model.Employee;
 import com.yobijoss.RestEmployeeService.service.EmployeeResourceAssambler;
 import com.yobijoss.RestEmployeeService.service.EmployeeService;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,20 @@ public class EmployeeServiceController {
                 .map(employee -> employeeResourceAssambler.toResource(employee))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/top")
+    public ResponseEntity<Resource<Employee>> getTop() {
+        Optional<Employee> employee = employeeService.getAll().stream()
+            .findFirst();
+
+        if (employee.isPresent()) {
+          Resource<Employee> employeeResource =  employeeResourceAssambler.toResource(employee.get());
+          return new ResponseEntity<>(employeeResource, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
     }
 
     @PostMapping
